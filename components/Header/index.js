@@ -57,7 +57,7 @@ export default function HeaderComponent() {
                     </Toolbar>
                 </div>
                 <AppBar position={"sticky"}>
-                    <Toolbar style={{ maxWidth: 1000, margin: "auto", width: "100%" }}>
+                    <Toolbar style={{ maxWidth: 1200, margin: "auto", width: "100%" }}>
                         <div className={styles.logoContainer}>
                             <Animated
                                 animationIn="zoomIn"

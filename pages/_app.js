@@ -23,7 +23,7 @@ export default function MyApp(props) {
     return (
         <ThemeProvider theme={theme}>
             <HeaderComponent />
-            <div style={{ maxWidth: 1000, margin: "auto" }}>
+            <div style={{ maxWidth: 1200, margin: "auto" }}>
                 <props.Component {...props.pageProps} />
             </div>
         </ThemeProvider>
