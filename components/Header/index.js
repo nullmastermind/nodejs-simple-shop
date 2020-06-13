@@ -41,13 +41,13 @@ export default function HeaderComponent() {
                                 animationInDuration={1000}
                                 animationOutDuration={1000}
                                 isVisible={showFullLogo}>
-                                <Button variant={"contained"} size={"small"} color={"primary"} startIcon={<Assignment />}>
+                                <Button size={"small"} color={"inherit"} startIcon={<Assignment />}>
                                     Home Eat - Hân hạnh được phục vụ quý khách!
                                 </Button>
                             </Animated>
                         </Grid>
                         <Grid item={true} xs={0} sm={3} style={{ textAlign: "right" }}>
-                            <Button variant={"contained"} size={"small"} color={"primary"} startIcon={<Help />}>
+                            <Button size={"small"} color={"inherit"} startIcon={<Help />}>
                                 Hướng dẫn
                             </Button>
                         </Grid>
@@ -81,10 +81,11 @@ export default function HeaderComponent() {
                         </div>
                         {/*{["Trang chủ", "Combo", "Cơm", "Mỳ", "Ăn Nhanh"].map((v) => (*/}
                         {["Trang chủ"].map((v) => (
-                            <Button variant={"contained"} color={"primary"} key={v}>
+                            <Button color={"inherit"} key={v}>
                                 {v}
                             </Button>
                         ))}
+                        <Button color={"inherit"}>Login</Button>
                     </Toolbar>
                 </AppBar>
             </Hidden>
