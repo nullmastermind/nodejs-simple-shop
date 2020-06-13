@@ -1,0 +1,44 @@
+.root {
+    background: #000000;
+    min-height: 0 !important;
+    font-size: small;
+    color: #ffffff;
+    padding: 8px 32px;
+}
+
+.menuButton {
+    margin-right: 16px;
+}
+
+.title {
+    flex-grow: 1;
+}
+
+.logo {
+    height: 62px;
+    position: absolute;
+    top: -30px;
+    left: 32px;
+    cursor: pointer;
+}
+
+.logoContainer {
+    width: 128px;
+    position: relative;
+}
+
+.logoBg {
+    background: #10ab4e;
+    position: absolute;
+    top: -30px;
+    left: 0;
+    width: 120px;
+    height: 120px;
+    border-radius: 2px 2px 16px 16px;
+    cursor: pointer;
+}
+
+.logoBg img {
+    max-height: 100px;
+    cursor: pointer;
+}

@@ -7,7 +7,9 @@ export default function Home(props) {
             <Head>
                 <title>Shop</title>
             </Head>
-            <main>{props.testData.name}</main>
+            <main>
+                <div style={{ height: "calc(100vh + 100vh)" }}>{props.testData.name}</div>
+            </main>
         </React.Fragment>
     );
 }
