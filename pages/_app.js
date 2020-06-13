@@ -1,9 +1,15 @@
 import React from "react";
 import "../styles/styles.scss";
 import axios from "../utils/axios";
+import HeaderComponent from "../components/Header";
 
 export default function MyApp(props) {
-    return <props.Component {...props.pageProps} />;
+    return (
+        <React.Fragment>
+            <HeaderComponent />
+            <props.Component {...props.pageProps} />
+        </React.Fragment>
+    );
 }
 
 MyApp.getInitialProps = async function ({ Component, ctx }) {

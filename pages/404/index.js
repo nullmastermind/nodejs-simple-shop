@@ -1,6 +1,6 @@
 import React from "react";
 import CenterMiddleContentComponent from "../../components/CenterMiddleContent";
-import styles from "./style.module.scss";
+import styles from "./styles.module.scss";
 
 export default function NotFound() {
     return (
