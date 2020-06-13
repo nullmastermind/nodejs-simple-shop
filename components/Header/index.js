@@ -33,29 +33,31 @@ export default function HeaderComponent() {
         <React.Fragment>
             {/*PC*/}
             <Hidden xsDown={true}>
-                <Toolbar className={styles.root}>
-                    <Grid container={true}>
-                        <Grid item={true} xs={12} sm={9}>
-                            <Animated
-                                animationIn="pulse"
-                                animationOut="zoomOut"
-                                animationInDuration={1000}
-                                animationOutDuration={1000}
-                                isVisible={showFullLogo}>
-                                <Button size={"small"} color={"inherit"} startIcon={<Assignment />}>
-                                    Home Eat - Hân hạnh được phục vụ quý khách!
+                <div style={{ background: "#000000" }}>
+                    <Toolbar className={styles.root}>
+                        <Grid container={true}>
+                            <Grid item={true} xs={12} sm={9}>
+                                <Animated
+                                    animationIn="pulse"
+                                    animationOut="zoomOut"
+                                    animationInDuration={1000}
+                                    animationOutDuration={1000}
+                                    isVisible={showFullLogo}>
+                                    <Button size={"small"} color={"inherit"} startIcon={<Assignment />}>
+                                        Home Eat - Hân hạnh được phục vụ quý khách!
+                                    </Button>
+                                </Animated>
+                            </Grid>
+                            <Grid item={true} xs={0} sm={3} style={{ textAlign: "right" }}>
+                                <Button size={"small"} color={"inherit"} startIcon={<Help />}>
+                                    Hướng dẫn
                                 </Button>
-                            </Animated>
+                            </Grid>
                         </Grid>
-                        <Grid item={true} xs={0} sm={3} style={{ textAlign: "right" }}>
-                            <Button size={"small"} color={"inherit"} startIcon={<Help />}>
-                                Hướng dẫn
-                            </Button>
-                        </Grid>
-                    </Grid>
-                </Toolbar>
+                    </Toolbar>
+                </div>
                 <AppBar position={"sticky"}>
-                    <Toolbar>
+                    <Toolbar style={{ maxWidth: 1000, margin: "auto", width: "100%" }}>
                         <div className={styles.logoContainer}>
                             <Animated
                                 animationIn="zoomIn"
@@ -80,17 +82,20 @@ export default function HeaderComponent() {
                                 </Box>
                             </Animated>
                         </div>
-                        {/*{["Trang chủ", "Combo", "Cơm", "Mỳ", "Ăn Nhanh"].map((v) => (*/}
-                        <div style={{ flexGrow: 1 }}>
-                            {["Trang chủ"].map((v) => (
-                                <Button color={"inherit"} key={v}>
-                                    {v}
+                        <Grid container={true}>
+                            <Grid item={true} xs={6}>
+                                {["Trang chủ"].map((v) => (
+                                    <Button color={"inherit"} key={v}>
+                                        {v}
+                                    </Button>
+                                ))}
+                            </Grid>
+                            <Grid item={true} xs={6} style={{ textAlign: "right" }}>
+                                <Button color={"secondary"} variant={"contained"} startIcon={<WhatsApp />}>
+                                    0376 651 156
                                 </Button>
-                            ))}
-                        </div>
-                        <Button color={"secondary"} variant={"contained"} startIcon={<WhatsApp />}>
-                            0376 651 156
-                        </Button>
+                            </Grid>
+                        </Grid>
                     </Toolbar>
                 </AppBar>
             </Hidden>

@@ -4,6 +4,7 @@ import axios from "../utils/axios";
 import HeaderComponent from "../components/Header";
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 import { ThemeProvider } from "@material-ui/core/styles";
+import Box from "@material-ui/core/Box";
 
 const theme = createMuiTheme({
     palette: {
@@ -22,7 +23,9 @@ export default function MyApp(props) {
     return (
         <ThemeProvider theme={theme}>
             <HeaderComponent />
-            <props.Component {...props.pageProps} />
+            <div style={{ maxWidth: 1000, margin: "auto" }}>
+                <props.Component {...props.pageProps} />
+            </div>
         </ThemeProvider>
     );
 }
