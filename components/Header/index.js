@@ -111,7 +111,7 @@ export default function HeaderComponent() {
                                 animationOutDuration={1000}
                                 isVisible={!showFullLogo}
                                 animateOnMount={false}>
-                                <img src={"https://homeeat.vn/wp-content/uploads/2020/05/home-eat.png"} className={styles.logo} alt={"logo"} />
+                                <img src={"https://homeeat.vn/wp-content/uploads/2020/05/home-eat.png"} className={styles.logoMobile} alt={"logo"} />
                             </Animated>
                             <Animated
                                 animationIn="zoomIn"
