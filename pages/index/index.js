@@ -1,5 +1,5 @@
 import Head from "next/head";
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./styles.module.scss";
 import CenterMiddleContentComponent from "../../components/CenterMiddleContent";
 import Box from "@material-ui/core/Box";
@@ -17,11 +17,31 @@ import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
+import Dialog from "@material-ui/core/Dialog";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import TextField from "@material-ui/core/TextField";
+import DialogActions from "@material-ui/core/DialogActions";
 
 const { useState } = require("react");
 
 export default function Home(props) {
     const [menu, setMenu] = useState("default");
+    const [open, setOpen] = useState(false);
+    const [selectedOrder, setSelectedOrder] = useState({});
+    const [count, setCount] = useState(1);
+
+    const handleClickOpen = (order) => {
+        setCount(1);
+        setSelectedOrder(order);
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setSelectedOrder({});
+        setOpen(false);
+    };
 
     return (
         <React.Fragment>
@@ -83,7 +103,14 @@ export default function Home(props) {
                                             </CardContent>
                                         </CardActionArea>
                                         <CardActions>
-                                            <Button fullWidth={true} color={"secondary"} variant={"contained"} size={"small"}>
+                                            <Button
+                                                fullWidth={true}
+                                                color={"secondary"}
+                                                variant={"contained"}
+                                                size={"small"}
+                                                onClick={() => {
+                                                    handleClickOpen(order);
+                                                }}>
                                                 Thêm vào giỏ
                                             </Button>
                                         </CardActions>
@@ -93,6 +120,34 @@ export default function Home(props) {
                         })}
                     </Grid>
                 </Box>
+                <Dialog open={open} onClose={handleClose}>
+                    <DialogTitle>{selectedOrder.name}</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText>
+                            <Typography>
+                                Số tiền: {formatMoney(selectedOrder.currentPrice)} x {count || 0} = {formatMoney(selectedOrder.currentPrice * (count || 0))}đ
+                            </Typography>
+                        </DialogContentText>
+                        <TextField
+                            onFocus={(e) => e.target.select()}
+                            autoFocus={true}
+                            margin={"dense"}
+                            type={"number"}
+                            fullWidth={true}
+                            label={"Số lượng"}
+                            value={count}
+                            onChange={(e) => setCount(parseInt(e.target.value))}
+                        />
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleClose} color="primary">
+                            Đóng
+                        </Button>
+                        <Button onClick={handleClose} color="primary">
+                            Thêm
+                        </Button>
+                    </DialogActions>
+                </Dialog>
             </main>
         </React.Fragment>
     );
@@ -107,6 +162,7 @@ const orders = [];
 
 for (let i = 0; i < 20; i++) {
     orders.push({
+        id: i,
         name: "Cơm rang ốp trứng",
         image: "https://homeeat.vn/wp-content/uploads/2020/05/C%C6%A1m-rang-tr%E1%BB%A9ng-%E1%BB%91p.jpg",
         originPrice: 30000,
