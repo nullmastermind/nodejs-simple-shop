@@ -27,7 +27,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 const { useState } = require("react");
 
 export default function Home(props) {
-    const [menu, setMenu] = useState("default");
+    const [menu, setMenu] = useState("all");
     const [open, setOpen] = useState(false);
     const [selectedOrder, setSelectedOrder] = useState({});
     const [count, setCount] = useState(1);
@@ -76,14 +76,14 @@ export default function Home(props) {
                             onChange={(e) => {
                                 setMenu(e.target.value);
                             }}>
-                            <MenuItem value={"default"}>Thực đơn hôm nay</MenuItem>
-                            <MenuItem value={"1"}>Twenty</MenuItem>
-                            <MenuItem value={"2"}>Thirty</MenuItem>
+                            <MenuItem value={"all"}>Tất cả thực đơn</MenuItem>
+                            <MenuItem value={"nuoc"}>Combo</MenuItem>
+                            <MenuItem value={"combo"}>Nước</MenuItem>
                         </Select>
                     </FormControl>
                 </Box>
                 <Box className={styles.orders}>
-                    <Grid container={true} spacing={1}>
+                    <Grid container={true} spacing={1} alignItems={"stretch"}>
                         {orders.map((order, i) => {
                             return (
                                 <Grid item={true} xs={6} sm={4} md={3} key={i}>
