@@ -96,7 +96,12 @@ export default function HeaderComponent(props) {
                                 ))}
                             </Grid>
                             <Grid item={true} xs={6} style={{ textAlign: "right" }}>
-                                <Button color={"secondary"} variant={"contained"} startIcon={<WhatsApp />}>
+                                <Button
+                                    color={"secondary"}
+                                    variant={"contained"}
+                                    startIcon={<WhatsApp />}
+                                    component={"a"}
+                                    href={"tel:" + props.web["phone"].replace(/ /g, "")}>
                                     {props.web["phone"]}
                                 </Button>
                             </Grid>
@@ -133,7 +138,13 @@ export default function HeaderComponent(props) {
                             </Animated>
                         </div>
                         <div style={{ flexGrow: 1 }} />
-                        <Button color={"secondary"} variant={"contained"} size={"small"} startIcon={<WhatsApp />}>
+                        <Button
+                            size={"small"}
+                            color={"secondary"}
+                            variant={"contained"}
+                            startIcon={<WhatsApp />}
+                            component={"a"}
+                            href={"tel:" + props.web["phone"].replace(/ /g, "")}>
                             {props.web["phone"]}
                         </Button>
                     </Toolbar>
