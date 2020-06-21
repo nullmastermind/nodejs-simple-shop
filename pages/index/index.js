@@ -13,8 +13,16 @@ import CardContent from "@material-ui/core/CardContent";
 import Grid from "@material-ui/core/Grid";
 import { Hidden } from "@material-ui/core";
 import CardActions from "@material-ui/core/CardActions";
+import FormControl from "@material-ui/core/FormControl";
+import InputLabel from "@material-ui/core/InputLabel";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+
+const { useState } = require("react");
 
 export default function Home(props) {
+    const [menu, setMenu] = useState("default");
+
     return (
         <React.Fragment>
             <Head>
@@ -40,11 +48,25 @@ export default function Home(props) {
                         </div>
                     </Hidden>
                 </Box>
+                <Box className={styles.selectBox}>
+                    <FormControl style={{ minWidth: "30%" }}>
+                        <InputLabel>Menu</InputLabel>
+                        <Select
+                            value={menu}
+                            onChange={(e) => {
+                                setMenu(e.target.value);
+                            }}>
+                            <MenuItem value={"default"}>Thực đơn hôm nay</MenuItem>
+                            <MenuItem value={"1"}>Twenty</MenuItem>
+                            <MenuItem value={"2"}>Thirty</MenuItem>
+                        </Select>
+                    </FormControl>
+                </Box>
                 <Box className={styles.orders}>
                     <Grid container={true} spacing={1}>
-                        {orders.map((order) => {
+                        {orders.map((order, i) => {
                             return (
-                                <Grid item={true} xs={6} sm={4} md={3}>
+                                <Grid item={true} xs={6} sm={4} md={3} key={i}>
                                     <Card>
                                         <CardActionArea>
                                             <CardMedia image={order.image} title={order.name} className={styles.media} />
@@ -71,7 +93,6 @@ export default function Home(props) {
                         })}
                     </Grid>
                 </Box>
-                <div style={{ height: 100 }} />
             </main>
         </React.Fragment>
     );
