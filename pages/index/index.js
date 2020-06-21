@@ -15,17 +15,17 @@ export default function Home(props) {
             </Head>
             <main>
                 <Box boxShadow={3} borderRadius={16} style={{ position: "relative", overflow: "hidden" }}>
-                    <img src={"https://homeeat.vn/wp-content/uploads/2020/05/b2-01.jpg"} alt={"banner"} className={styles.banner} />
+                    <img src={props.web["welcome_bg_1"]} alt={"banner"} className={styles.banner} />
                     <div className={styles.bannerDescription}>
-                        <CenterMiddleContentComponent >
+                        <CenterMiddleContentComponent>
                             <Box boxShadow={3} borderRadius={8} className={styles.description}>
-                                <Typography variant={"h4"}>Ăn Ngon Cùng “Home Eat”</Typography>
-                                <Typography>Mang hương vị cơm việt đến tận nơi bạn muốn thưởng thức nó.</Typography>
+                                <Typography variant={"h4"}>{props.web["welcome_1"]}</Typography>
+                                <Typography>{props.web["welcome_2"]}</Typography>
                                 <div className={styles.divider}>
                                     <Divider />
                                 </div>
                                 <Button variant={"contained"} color={"secondary"}>
-                                    Xem thực đơn
+                                    {props.web["webcome_button"]}
                                 </Button>
                             </Box>
                         </CenterMiddleContentComponent>
