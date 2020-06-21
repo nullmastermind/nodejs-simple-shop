@@ -1,25 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../styles/styles.scss";
 import axios from "../utils/axios";
 import HeaderComponent from "../components/Header";
-import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 import { ThemeProvider } from "@material-ui/core/styles";
-import Box from "@material-ui/core/Box";
-
-const theme = createMuiTheme({
-    palette: {
-        primary: {
-            main: "#212121",
-            textColor: "#ffffff",
-        },
-        secondary: {
-            main: "#10ab4e",
-            textColor: "#ffffff",
-        },
-    },
-});
+import theme from "../styles/theme";
 
 export default function MyApp(props) {
+    useEffect(() => {
+        let jssStyles = document.querySelector("#jss-server-side");
+        if (jssStyles) {
+            jssStyles.parentElement.removeChild(jssStyles);
+        }
+    }, []);
+
     return (
         <ThemeProvider theme={theme}>
             <HeaderComponent />
