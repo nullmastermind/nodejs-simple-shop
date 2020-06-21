@@ -4,7 +4,6 @@ import axios from "../utils/axios";
 import HeaderComponent from "../components/Header";
 import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "../styles/theme";
-import firebase from "../utils/firebase";
 
 export default function MyApp(props) {
     useEffect(() => {
