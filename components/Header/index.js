@@ -13,7 +13,7 @@ import { Assignment, Help, WhatsApp } from "@material-ui/icons";
 
 const { useState } = require("react");
 
-export default function HeaderComponent() {
+export default function HeaderComponent(props) {
     const [showFullLogo, setShowFullLogo] = useState(true);
 
     useEffect(() => {
@@ -44,7 +44,7 @@ export default function HeaderComponent() {
                                     animationOutDuration={1000}
                                     isVisible={showFullLogo}>
                                     <Button size={"small"} color={"inherit"} startIcon={<Assignment />}>
-                                        Home Eat - Hân hạnh được phục vụ quý khách!
+                                        {props.web["welcome"]}
                                     </Button>
                                 </Animated>
                             </Grid>
@@ -66,7 +66,7 @@ export default function HeaderComponent() {
                                 animationOutDuration={1000}
                                 isVisible={!showFullLogo}
                                 animateOnMount={false}>
-                                <img src={"https://homeeat.vn/wp-content/uploads/2020/05/home-eat.png"} className={styles.logo} alt={"logo"} />
+                                <img src={props.web["logo"]} className={styles.logo} alt={"logo"} />
                             </Animated>
                             <Animated
                                 animationIn="zoomIn"
@@ -77,7 +77,7 @@ export default function HeaderComponent() {
                                 animateOnMount={false}>
                                 <Box className={styles.logoBg} boxShadow={3}>
                                     <CenterMiddleContentComponent>
-                                        <img src={"https://homeeat.vn/wp-content/uploads/2020/05/home-eat.png"} alt={"logo"} />
+                                        <img src={props.web["logo"]} alt={"logo"} />
                                     </CenterMiddleContentComponent>
                                 </Box>
                             </Animated>
@@ -85,14 +85,19 @@ export default function HeaderComponent() {
                         <Grid container={true}>
                             <Grid item={true} xs={6}>
                                 {["Trang chủ"].map((v) => (
-                                    <Button color={"inherit"} key={v}>
+                                    <Button
+                                        color={"inherit"}
+                                        key={v}
+                                        onClick={() => {
+                                            window.location.href = "/";
+                                        }}>
                                         {v}
                                     </Button>
                                 ))}
                             </Grid>
                             <Grid item={true} xs={6} style={{ textAlign: "right" }}>
                                 <Button color={"secondary"} variant={"contained"} startIcon={<WhatsApp />}>
-                                    0376 651 156
+                                    {props.web["phone"]}
                                 </Button>
                             </Grid>
                         </Grid>
@@ -111,7 +116,7 @@ export default function HeaderComponent() {
                                 animationOutDuration={1000}
                                 isVisible={!showFullLogo}
                                 animateOnMount={false}>
-                                <img src={"https://homeeat.vn/wp-content/uploads/2020/05/home-eat.png"} className={styles.logoMobile} alt={"logo"} />
+                                <img src={props.web["logo"]} className={styles.logoMobile} alt={"logo"} />
                             </Animated>
                             <Animated
                                 animationIn="zoomIn"
@@ -122,14 +127,14 @@ export default function HeaderComponent() {
                                 animateOnMount={false}>
                                 <Box className={styles.logoBg} boxShadow={3}>
                                     <CenterMiddleContentComponent>
-                                        <img src={"https://homeeat.vn/wp-content/uploads/2020/05/home-eat.png"} alt={"logo"} />
+                                        <img src={props.web["logo"]} alt={"logo"} />
                                     </CenterMiddleContentComponent>
                                 </Box>
                             </Animated>
                         </div>
                         <div style={{ flexGrow: 1 }} />
                         <Button color={"secondary"} variant={"contained"} size={"small"} startIcon={<WhatsApp />}>
-                            0376 651 156
+                            {props.web["phone"]}
                         </Button>
                     </Toolbar>
                 </AppBar>
