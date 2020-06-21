@@ -3,12 +3,8 @@ import styles from "./styles.module.scss";
 
 export default function CenterMiddleContentComponent(props) {
     return (
-        <table {...props} className={styles.root}>
-            <tbody>
-                <tr>
-                    <td>{props.children}</td>
-                </tr>
-            </tbody>
-        </table>
+        <div className={styles.root} {...props}>
+            {props.children}
+        </div>
     );
 }
