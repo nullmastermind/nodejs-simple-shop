@@ -17,7 +17,7 @@ export default function Home(props) {
                 <Box boxShadow={3} borderRadius={16} style={{ position: "relative", overflow: "hidden" }}>
                     <img src={"https://homeeat.vn/wp-content/uploads/2020/05/b2-01.jpg"} alt={"banner"} className={styles.banner} />
                     <div className={styles.bannerDescription}>
-                        <CenterMiddleContentComponent>
+                        <CenterMiddleContentComponent >
                             <Box boxShadow={3} borderRadius={8} className={styles.description}>
                                 <Typography variant={"h4"}>Ăn Ngon Cùng “Home Eat”</Typography>
                                 <Typography>Mang hương vị cơm việt đến tận nơi bạn muốn thưởng thức nó.</Typography>

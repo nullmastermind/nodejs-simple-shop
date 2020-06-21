@@ -48,7 +48,7 @@ export default function HeaderComponent() {
                                     </Button>
                                 </Animated>
                             </Grid>
-                            <Grid item={true} xs={0} sm={3} style={{ textAlign: "right" }}>
+                            <Grid item={true} xs={false} sm={3} style={{ textAlign: "right" }}>
                                 <Button size={"small"} color={"inherit"} startIcon={<Help />}>
                                     Hướng dẫn
                                 </Button>
