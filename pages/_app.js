@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import "../styles/styles.scss";
-import axios from "../utils/axios";
 import HeaderComponent from "../components/Header";
 import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "../styles/theme";
+import { db } from "../utils/firebase";
 
 export default function MyApp(props) {
     useEffect(() => {
@@ -25,6 +25,9 @@ export default function MyApp(props) {
 
 MyApp.getInitialProps = async function ({ Component, ctx }) {
     let pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
-    pageProps.testData = (await axios.get("/api/hello")).data;
+    // firebase
+    let dataRef = db.collection("data");
+    pageProps.web = (await dataRef.doc("xwZ1adB72aQ4HlBylZyT").get()).data();
+    //
     return { pageProps };
 };
