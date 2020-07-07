@@ -66,7 +66,7 @@ export default function HeaderComponent(props) {
                                 animationOutDuration={1000}
                                 isVisible={!showFullLogo}
                                 animateOnMount={false}>
-                                <img src={props.web["logo"]} className={styles.logo} alt={"logo"} />
+                                <img src={props.web["logo2"]} className={styles.logo} alt={"logo"} />
                             </Animated>
                             <Animated
                                 animationIn="zoomIn"
@@ -121,7 +121,7 @@ export default function HeaderComponent(props) {
                                 animationOutDuration={1000}
                                 isVisible={!showFullLogo}
                                 animateOnMount={false}>
-                                <img src={props.web["logo"]} className={styles.logoMobile} alt={"logo"} />
+                                <img src={props.web["logo2"]} className={styles.logoMobile} alt={"logo"} />
                             </Animated>
                             <Animated
                                 animationIn="zoomIn"

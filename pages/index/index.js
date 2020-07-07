@@ -43,6 +43,10 @@ export default function Home(props) {
         setOpen(false);
     };
 
+    useEffect(() => {
+        if (count < 0) setCount(0);
+    }, [count]);
+
     return (
         <React.Fragment>
             <Head>
@@ -123,21 +127,32 @@ export default function Home(props) {
                 <Dialog open={open} onClose={handleClose}>
                     <DialogTitle>{selectedOrder.name}</DialogTitle>
                     <DialogContent>
-                        <DialogContentText>
-                            <Typography>
-                                Số tiền: {formatMoney(selectedOrder.currentPrice)} x {count || 0} = {formatMoney(selectedOrder.currentPrice * (count || 0))}đ
-                            </Typography>
-                        </DialogContentText>
-                        <TextField
-                            onFocus={(e) => e.target.select()}
-                            autoFocus={true}
-                            margin={"dense"}
-                            type={"number"}
-                            fullWidth={true}
-                            label={"Số lượng"}
-                            value={count}
-                            onChange={(e) => setCount(parseInt(e.target.value))}
-                        />
+                        <div style={{ minWidth: 250 }}>
+                            <DialogContentText>
+                                <Typography>
+                                    Số tiền: {formatMoney(selectedOrder.currentPrice)} x {count || 0} = {formatMoney(selectedOrder.currentPrice * (count || 0))}
+                                    đ
+                                </Typography>
+                            </DialogContentText>
+                            <TextField
+                                onFocus={(e) => e.target.select()}
+                                autoFocus={true}
+                                margin={"dense"}
+                                type={"number"}
+                                fullWidth={true}
+                                label={"Số lượng"}
+                                value={count}
+                                onChange={(e) => setCount(parseInt(e.target.value))}
+                            />
+                            <div style={{ textAlign: "center" }}>
+                                <Button variant={"contained"} onClick={() => setCount(count - 1)}>
+                                    -
+                                </Button>
+                                <Button variant={"contained"} style={{ marginLeft: 4 }} onClick={() => setCount(count + 1)}>
+                                    +
+                                </Button>
+                            </div>
+                        </div>
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={handleClose} color="primary">
