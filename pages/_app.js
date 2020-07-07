@@ -3,7 +3,7 @@ import "../styles/styles.scss";
 import HeaderComponent from "../components/Header";
 import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "../styles/theme";
-import { db } from "../utils/firebase";
+import axios from "../utils/axios";
 
 export default function MyApp(props) {
     useEffect(() => {
@@ -25,9 +25,7 @@ export default function MyApp(props) {
 
 MyApp.getInitialProps = async function ({ Component, ctx }) {
     let pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
-    // firebase
-    let dataRef = db.collection("data");
-    pageProps.web = (await dataRef.doc("xwZ1adB72aQ4HlBylZyT").get()).data();
-    //
+    // pageProps.web = (await axios.get("/config")).data;
+    pageProps.web = (await axios.get("/api/config")).data;
     return { pageProps };
 };

@@ -12,6 +12,8 @@
         "@material-ui/icons": "^4.9.1",
         "axios": "^0.19.2",
         "firebase": "^7.15.3",
+        "google-spreadsheet": "^3.0.11",
+        "memory-cache": "^0.2.0",
         "next": "9.4.4",
         "react": "16.13.1",
         "react-animated-css": "^1.2.1",
