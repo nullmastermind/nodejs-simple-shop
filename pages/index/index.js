@@ -23,9 +23,9 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import TextField from "@material-ui/core/TextField";
 import DialogActions from "@material-ui/core/DialogActions";
-import axios from "../../utils/axios";
 import _ from "lodash";
 import { useRouter } from "next/router";
+import { getBaseURL, rq } from "../../utils/axios";
 
 const { useState } = require("react");
 
@@ -211,7 +211,7 @@ export default function Home(props) {
 }
 
 Home.getInitialProps = async function ({ Component, ctx }) {
-    let products = (await axios.get("/api/products")).data;
+    let products = (await rq.get(getBaseURL() + "/api/products")).data;
     return { products };
 };
 

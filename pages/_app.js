@@ -3,7 +3,7 @@ import "../styles/styles.scss";
 import HeaderComponent from "../components/Header";
 import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "../styles/theme";
-import axios from "../utils/axios";
+import { getBaseURL, rq } from "../utils/axios";
 
 export default function MyApp(props) {
     useEffect(() => {
@@ -23,9 +23,8 @@ export default function MyApp(props) {
     );
 }
 
-MyApp.getInitialProps = async function ({ Component, ctx }) {
+MyApp.getInitialProps = async function ({ Component, ctx, req }) {
     let pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
-    // pageProps.web = (await axios.get("/config")).data;
-    pageProps.web = (await axios.get("/api/config")).data;
+    pageProps.web = (await rq.get(getBaseURL(req) + "/api/config")).data;
     return { pageProps };
 };

@@ -1,5 +1,13 @@
-import axios from "axios";
+import axios1 from "axios";
 
-export default axios.create({
-    baseURL: "http://localhost:3000",
-});
+export const getBaseURL = (req) => {
+    // return "http://" + req.headers.host;
+    return process.env.BASE_URL;
+};
+
+const axios = axios1.create();
+
+export const rq = {
+    get: axios.get,
+    post: axios.post,
+};
