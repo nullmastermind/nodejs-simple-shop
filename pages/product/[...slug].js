@@ -7,8 +7,14 @@ export default function Product(props) {
         <React.Fragment>
             <Head>
                 <title>Green Food - {props.name}</title>
+                <meta name={"description"} content={props.SEO_desc} />
+                <meta name={"keywords"} content={props.tags} />
+                <meta property={"og:title"} content={props.name} />
+                <meta property={"og:description"} content={props.SEO_desc} />
+                <meta property={"og:image"} content={props.image} />
+                <meta property={"og:image:url"} content={props.image} />
             </Head>
-            <main>Halo</main>
+            <main></main>
         </React.Fragment>
     );
 }

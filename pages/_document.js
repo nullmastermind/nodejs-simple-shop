@@ -14,6 +14,12 @@ export default class MyDocument extends Document {
                     <link rel={"stylesheet"} href={"https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"} />
                     <link rel={"stylesheet"} href={"https://fonts.googleapis.com/icon?family=Material+Icons"} />
                     <link rel={"stylesheet"} href={"https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"} />
+
+                    <meta http-equiv={"content-language"} content={"vi"} />
+                    <meta http-equiv={"Content-Type"} content={"text/html; charset=utf-8"} />
+                    <meta property={"og:locale"} content={"vi_VN"} />
+                    <meta property={"og:site_name"} content={"Green Food"} />
+                    <meta property="og:type" content="greenfood:restaurant" />
                 </Head>
                 <body>
                     <Main />

@@ -3,5 +3,7 @@ import _ from "lodash";
 
 export default async (req, res) => {
     let products = await getProducts();
-    res.json(_.find(products, { id: req.body.id || req.query.id }));
+    let product = _.find(products, { id: req.body.id || req.query.id });
+    product.SEO_desc = product.desc || product.name;
+    res.json(product);
 };

@@ -22,7 +22,8 @@ export const getProducts = async () => {
             currentPrice: v._rawData[2] ? parseInt(v._rawData[2]) : null,
             type: v._rawData[4],
             typeFilter: (v._rawData[4] || "").split(",").map((v) => v.trim().toUpperCase()),
-            desc: v._rawData[5],
+            desc: (v._rawData[5] || "").substr(0, 160),
+            tags: v._rawData[6] || v._rawData[0].split(","),
         }))
     );
 };
