@@ -9,7 +9,7 @@
         "dev": "cross-env BASE_URL=http://local-vapp.cotest.abivin.vn next dev",
         "build": "next build",
         "start-local": "cross-env BASE_URL=http://local-vapp.cotest.abivin.vn next start",
-        "start-google-cloud": "cross-env BASE_URL=http://35.220.156.162 next start",
+        "start-google-cloud": "cross-env BASE_URL=http://34.92.144.15 next start",
         "start": "next start -p $PORT"
     },
     "dependencies": {
