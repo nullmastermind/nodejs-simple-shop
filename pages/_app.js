@@ -18,6 +18,7 @@ export default function MyApp(props) {
             <HeaderComponent {...props.pageProps} />
             <div style={{ maxWidth: 1200, margin: "auto" }}>
                 <props.Component {...props.pageProps} />
+                <div style={{ height: 100 }} />
             </div>
         </ThemeProvider>
     );

@@ -34,12 +34,12 @@ export default function Product(props) {
             <main style={{ paddingLeft: 16, paddingRight: 16 }}>
                 <Card elevation={3} className={styles.product}>
                     <Grid container={true} spacing={0}>
-                        <Grid item={true} xs={4}>
+                        <Grid item={true} xs={12} sm={4}>
                             <Box padding={2} className={styles["product__image--container"]}>
                                 <img src={props.image} alt={props.name} className={styles.product__image} />
                             </Box>
                         </Grid>
-                        <Grid item={true} xs={8}>
+                        <Grid item={true} xs={12} sm={8}>
                             <Box padding={2}>
                                 <Typography variant={"h4"} component={"h1"} className={styles.product__title}>
                                     {props.name}
