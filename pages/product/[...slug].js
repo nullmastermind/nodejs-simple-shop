@@ -79,6 +79,9 @@ export default function Product(props) {
                             </Box>
                         </React.Fragment>
                     )}
+                    <Box marginTop={1} padding={2}>
+                        <div className={"fb-comments"} data-href={props.url} data-numposts={"5"} data-width={"100%"} />
+                    </Box>
                 </Card>
             </main>
         </React.Fragment>

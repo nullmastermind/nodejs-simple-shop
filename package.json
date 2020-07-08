@@ -3,7 +3,7 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "dev": "cross-env BASE_URL=http://localhost:3000 next dev",
+        "dev": "cross-env BASE_URL=http://local-vapp.cotest.abivin.vn next dev",
         "build": "next build",
         "start": "cross-env BASE_URL=http://local-vapp.cotest.abivin.vn next start"
     },
