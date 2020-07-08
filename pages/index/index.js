@@ -23,6 +23,8 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import TextField from "@material-ui/core/TextField";
 import DialogActions from "@material-ui/core/DialogActions";
+import axios from "../../utils/axios";
+import _ from "lodash";
 
 const { useState } = require("react");
 
@@ -31,6 +33,8 @@ export default function Home(props) {
     const [open, setOpen] = useState(false);
     const [selectedOrder, setSelectedOrder] = useState({});
     const [count, setCount] = useState(1);
+    const [products, setProducts] = useState([]);
+    const [types, setTypes] = useState([]);
 
     const handleClickOpen = (order) => {
         setCount(1);
@@ -46,6 +50,34 @@ export default function Home(props) {
     useEffect(() => {
         if (count < 0) setCount(0);
     }, [count]);
+
+    useEffect(() => {
+        setProducts(props.products);
+        let mapping = {};
+        let list = [];
+        props.products.forEach((v) => {
+            (v.typeFilter || []).forEach((v1) => {
+                if (mapping[v1]) return;
+                mapping[v1] = true;
+                list.push(v1);
+            });
+        });
+        setTypes(list);
+    }, [props.products]);
+
+    useEffect(() => {
+        if (menu === "all") {
+            setProducts(props.products);
+        } else {
+            let list = [];
+            props.products.forEach((product) => {
+                if (product.typeFilter.includes(menu)) {
+                    list.push(_.cloneDeep(product));
+                }
+            });
+            setProducts(list);
+        }
+    }, [menu]);
 
     return (
         <React.Fragment>
@@ -80,15 +112,18 @@ export default function Home(props) {
                             onChange={(e) => {
                                 setMenu(e.target.value);
                             }}>
-                            <MenuItem value={"all"}>Tất cả thực đơn</MenuItem>
-                            <MenuItem value={"nuoc"}>Combo</MenuItem>
-                            <MenuItem value={"combo"}>Nước</MenuItem>
+                            <MenuItem value={"all"}>TẤT CẢ THỰC ĐƠN</MenuItem>
+                            {types.map((v) => (
+                                <MenuItem key={v} value={v}>
+                                    {v}
+                                </MenuItem>
+                            ))}
                         </Select>
                     </FormControl>
                 </Box>
                 <Box className={styles.orders}>
                     <Grid container={true} spacing={1} alignItems={"stretch"}>
-                        {orders.map((order, i) => {
+                        {products.map((order, i) => {
                             return (
                                 <Grid item={true} xs={6} sm={4} md={3} key={i}>
                                     <Card>
@@ -99,7 +134,7 @@ export default function Home(props) {
                                                     {order.name}
                                                 </Typography>
                                                 <Typography variant={"subtitle2"} color={"primary"}>
-                                                    {order.currentPrice !== order.originPrice && (
+                                                    {order.originPrice && order.currentPrice !== order.originPrice && (
                                                         <span className={styles.dropPrice}>{formatMoney(order.originPrice)}</span>
                                                     )}
                                                     {formatMoney(order.currentPrice)}đ
@@ -168,19 +203,12 @@ export default function Home(props) {
     );
 }
 
+Home.getInitialProps = async function ({ Component, ctx }) {
+    let products = (await axios.get("/api/products")).data;
+    return { products };
+};
+
 function formatMoney(v) {
     v = v + "";
     return v.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
-}
-
-const orders = [];
-
-for (let i = 0; i < 20; i++) {
-    orders.push({
-        id: i,
-        name: "Cơm rang ốp trứng",
-        image: "https://homeeat.vn/wp-content/uploads/2020/05/C%C6%A1m-rang-tr%E1%BB%A9ng-%E1%BB%91p.jpg",
-        originPrice: 30000,
-        currentPrice: 25000,
-    });
 }
