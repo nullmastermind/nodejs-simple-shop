@@ -47,22 +47,21 @@ export default function HeaderComponent(props) {
     return (
         <React.Fragment>
             {/*Cart*/}
-            {itemCount > 0 && (
-                <Box
-                    id={"cart"}
-                    className={styles.cart}
-                    borderRadius={8}
-                    textAlign={"center"}
-                    boxShadow={5}
-                    padding={1}
-                    onClick={() => {
-                        router.push("/checkout");
-                    }}>
-                    <Button startIcon={<AddShoppingCart />} style={{ color: "#10ab4e" }}>
-                        Giỏ hàng ({itemCount} sản phẩm)
-                    </Button>
-                </Box>
-            )}
+            <Box
+                hidden={!(itemCount > 0)}
+                id={"cart"}
+                className={styles.cart}
+                borderRadius={8}
+                textAlign={"center"}
+                boxShadow={5}
+                padding={1}
+                onClick={() => {
+                    router.push("/checkout");
+                }}>
+                <Button startIcon={<AddShoppingCart />} style={{ color: "#10ab4e" }}>
+                    Giỏ hàng ({itemCount} sản phẩm)
+                </Button>
+            </Box>
             {/*PC*/}
             <Hidden xsDown={true}>
                 <div style={{ background: "#000000" }}>
