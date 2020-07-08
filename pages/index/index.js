@@ -84,7 +84,7 @@ export default function Home(props) {
     return (
         <React.Fragment>
             <Head>
-                <title>Shop</title>
+                <title>Green Food</title>
             </Head>
             <main>
                 <Box boxShadow={3} borderRadius={8} style={{ position: "relative", overflow: "hidden" }}>
