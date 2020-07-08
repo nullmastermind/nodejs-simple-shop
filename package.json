@@ -6,7 +6,7 @@
         "dev": "cross-env BASE_URL=http://local-vapp.cotest.abivin.vn next dev",
         "build": "next build",
         "start-local": "cross-env BASE_URL=http://local-vapp.cotest.abivin.vn next start",
-        "start": "next start"
+        "start": "next start -p $PORT"
     },
     "dependencies": {
         "@material-ui/core": "^4.10.2",
