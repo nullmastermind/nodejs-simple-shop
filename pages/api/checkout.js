@@ -13,7 +13,7 @@ const q = new Queue(
             cb(new Error("fn not found"));
         }
     },
-    { concurrent: 1, maxRetries: 1, retryDelay: 1000 }
+    { concurrent: 5, maxRetries: 1, retryDelay: 1000 }
 );
 
 // {
