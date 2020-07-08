@@ -13,9 +13,9 @@ import AddToCart from "../../components/AddToCart";
 
 export default function Product(props) {
     useEffect(() => {
-        try {
+        if (window.FB) {
             FB.XFBML.parse();
-        } catch (e) {}
+        }
     }, []);
 
     return (
