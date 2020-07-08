@@ -53,3 +53,12 @@
     max-height: 100px;
     cursor: pointer;
 }
+
+.cart {
+    position: fixed;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    background-color: #212121;
+    z-index: 9999;
+}

@@ -9,7 +9,7 @@ import CenterMiddleContentComponent from "../CenterMiddleContent";
 import Box from "@material-ui/core/Box";
 // noinspection ES6CheckImport
 import { Animated } from "react-animated-css";
-import { Assignment, Help, WhatsApp } from "@material-ui/icons";
+import { AddShoppingCart, Assignment, Help, WhatsApp } from "@material-ui/icons";
 import { useRouter } from "next/router";
 
 const { useState } = require("react");
@@ -17,6 +17,7 @@ const { useState } = require("react");
 export default function HeaderComponent(props) {
     const router = useRouter();
     const [showFullLogo, setShowFullLogo] = useState(true);
+    const [itemCount, setItemCount] = useState(0);
 
     useEffect(() => {
         let scrollTimer = setInterval(() => {
@@ -31,8 +32,37 @@ export default function HeaderComponent(props) {
         };
     }, [showFullLogo]);
 
+    useEffect(() => {
+        let timmer = setInterval(() => {
+            let items = JSON.parse(localStorage.getItem("items") || "[]");
+            if (items.length !== itemCount) {
+                setItemCount(items.length);
+            }
+        }, 250);
+        return () => {
+            clearInterval(timmer);
+        };
+    }, [itemCount]);
+
     return (
         <React.Fragment>
+            {/*Cart*/}
+            {itemCount > 0 && (
+                <Box
+                    id={"cart"}
+                    className={styles.cart}
+                    borderRadius={8}
+                    textAlign={"center"}
+                    boxShadow={5}
+                    padding={1}
+                    onClick={() => {
+                        router.push("/checkout");
+                    }}>
+                    <Button startIcon={<AddShoppingCart />} style={{ color: "#10ab4e" }}>
+                        Giỏ hàng ({itemCount} sản phẩm)
+                    </Button>
+                </Box>
+            )}
             {/*PC*/}
             <Hidden xsDown={true}>
                 <div style={{ background: "#000000" }}>
