@@ -10,10 +10,12 @@ import Box from "@material-ui/core/Box";
 // noinspection ES6CheckImport
 import { Animated } from "react-animated-css";
 import { Assignment, Help, WhatsApp } from "@material-ui/icons";
+import { useRouter } from "next/router";
 
 const { useState } = require("react");
 
 export default function HeaderComponent(props) {
+    const router = useRouter();
     const [showFullLogo, setShowFullLogo] = useState(true);
 
     useEffect(() => {
@@ -71,7 +73,7 @@ export default function HeaderComponent(props) {
                                     className={styles.logo}
                                     alt={"logo"}
                                     onClick={() => {
-                                        window.location.href = "/";
+                                        router.push("/");
                                     }}
                                 />
                             </Animated>
@@ -88,7 +90,7 @@ export default function HeaderComponent(props) {
                                             src={props.web["logo"]}
                                             alt={"logo"}
                                             onClick={() => {
-                                                window.location.href = "/";
+                                                router.push("/");
                                             }}
                                         />
                                     </CenterMiddleContentComponent>
@@ -102,7 +104,7 @@ export default function HeaderComponent(props) {
                                         color={"inherit"}
                                         key={v}
                                         onClick={() => {
-                                            window.location.href = "/";
+                                            router.push("/");
                                         }}>
                                         {v}
                                     </Button>
@@ -139,7 +141,7 @@ export default function HeaderComponent(props) {
                                     className={styles.logoMobile}
                                     alt={"logo"}
                                     onClick={() => {
-                                        window.location.href = "/";
+                                        router.push("/");
                                     }}
                                 />
                             </Animated>
@@ -156,7 +158,7 @@ export default function HeaderComponent(props) {
                                             src={props.web["logo"]}
                                             alt={"logo"}
                                             onClick={() => {
-                                                window.location.href = "/";
+                                                router.push("/");
                                             }}
                                         />
                                     </CenterMiddleContentComponent>

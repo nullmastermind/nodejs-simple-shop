@@ -109,7 +109,7 @@ export default function Home(props) {
                                         <CardActionArea
                                             onClick={() => {
                                                 // noinspection JSIgnoredPromiseFromCall
-                                                router.push("/product?slug=" + order.id, "/product/" + order.id);
+                                                router.push(" /product/[...slug]", "/product/" + order.id);
                                             }}>
                                             <CardMedia image={order.image} title={order.name} className={styles.media} />
                                             <CardContent>

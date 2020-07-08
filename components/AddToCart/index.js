@@ -8,6 +8,7 @@ import Button from "@material-ui/core/Button";
 import DialogActions from "@material-ui/core/DialogActions";
 import Dialog from "@material-ui/core/Dialog";
 import { formatMoney } from "../../pages/index";
+import { AddShoppingCart } from "@material-ui/icons";
 
 export default function AddToCart(props) {
     const [open, setOpen] = useState(false);
@@ -30,6 +31,7 @@ export default function AddToCart(props) {
     return (
         <React.Fragment>
             <Button
+                startIcon={<AddShoppingCart />}
                 fullWidth={props.fullWidth}
                 color={"secondary"}
                 variant={"contained"}
