@@ -25,10 +25,12 @@ import TextField from "@material-ui/core/TextField";
 import DialogActions from "@material-ui/core/DialogActions";
 import axios from "../../utils/axios";
 import _ from "lodash";
+import { useRouter } from "next/router";
 
 const { useState } = require("react");
 
 export default function Home(props) {
+    const router = useRouter();
     const [menu, setMenu] = useState("all");
     const [open, setOpen] = useState(false);
     const [selectedOrder, setSelectedOrder] = useState({});
@@ -127,7 +129,11 @@ export default function Home(props) {
                             return (
                                 <Grid item={true} xs={6} sm={4} md={3} key={i}>
                                     <Card>
-                                        <CardActionArea>
+                                        <CardActionArea
+                                            onClick={() => {
+                                                // noinspection JSIgnoredPromiseFromCall
+                                                router.push("/product/" + order.id);
+                                            }}>
                                             <CardMedia image={order.image} title={order.name} className={styles.media} />
                                             <CardContent>
                                                 <Typography gutterBottom variant={"h6"} color={"primary"} component={"h2"}>
@@ -147,7 +153,8 @@ export default function Home(props) {
                                                 color={"secondary"}
                                                 variant={"contained"}
                                                 size={"small"}
-                                                onClick={() => {
+                                                onClick={(e) => {
+                                                    e.preventDefault();
                                                     handleClickOpen(order);
                                                 }}>
                                                 Thêm vào giỏ
