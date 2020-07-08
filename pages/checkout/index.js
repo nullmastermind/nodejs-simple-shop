@@ -105,9 +105,9 @@ export default function Checkout(props) {
                                     note,
                                     items,
                                 });
+                                window.confirm("Đặt hàng thành công. Quý khách vui lòng giữ máy GreenFood sẽ liên lạc với bạn sau ít phút. Trân trọng cảm ơn!");
                                 localStorage.removeItem("items");
                                 await router.push("/");
-                                alert("Đặt hàng thành công. Quý khách vui lòng giữ máy GreenFood sẽ liên lạc với bạn sau ít phút. Trân trọng cảm ơn!");
                             } catch (e) {
                                 alert("Đặt hàng thất bại, quý khách vui lòng thử lại!");
                             }
