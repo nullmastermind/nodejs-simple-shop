@@ -9,6 +9,7 @@ import CenterMiddleContentComponent from "../../components/CenterMiddleContent";
 import { formatMoney } from "../index";
 import Box from "@material-ui/core/Box";
 import Divider from "@material-ui/core/Divider";
+import AddToCart from "../../components/AddToCart";
 
 export default function Product(props) {
     return (
@@ -25,34 +26,13 @@ export default function Product(props) {
                 <meta property={"og:image:url"} content={props.image} />
             </Head>
             <main style={{ paddingLeft: 16, paddingRight: 16 }}>
+                <div id="fb-root" />
+                <script async defer crossOrigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v7.0" nonce="Y2TDG5uV" />
                 <Card elevation={3} className={styles.product}>
                     <Grid container={true} spacing={0}>
                         <Grid item={true} xs={4}>
                             <Box padding={2} className={styles["product__image--container"]}>
                                 <img src={props.image} alt={props.name} className={styles.product__image} />
-                                <Box marginTop={1}>
-                                    <div style={{ display: "inline-block" }}>
-                                        <Grid container={true} spacing={1}>
-                                            <Grid item={true} style={{ textAlign: "right" }}>
-                                                <div className={"fb-save"} data-uri={props.url} data-size={"small"} />
-                                            </Grid>
-                                            <Grid item={true} style={{ textAlign: "left" }}>
-                                                <div className={"fb-share-button"} data-href={props.url} data-layout={"button_count"} data-size={"small"}>
-                                                    <a
-                                                        target={"_blank"}
-                                                        href={
-                                                            "https://www.facebook.com/sharer/sharer.php?u=" +
-                                                            encodeURIComponent(props.url) +
-                                                            "%2F&amp;src=sdkpreparse"
-                                                        }
-                                                        className={"fb-xfbml-parse-ignore"}>
-                                                        Chia sẻ
-                                                    </a>
-                                                </div>
-                                            </Grid>
-                                        </Grid>
-                                    </div>
-                                </Box>
                             </Box>
                         </Grid>
                         <Grid item={true} xs={8}>
@@ -60,6 +40,18 @@ export default function Product(props) {
                                 <Typography variant={"h4"} component={"h1"} className={styles.product__title}>
                                     {props.name}
                                 </Typography>
+                                <Box marginTop={1}>
+                                    <div style={{ display: "inline-block" }}>
+                                        <Grid container={true} spacing={1}>
+                                            <Grid item={true} style={{ textAlign: "right" }}>
+                                                <div className={"fb-save"} data-uri={props.url} data-size={"small"} />
+                                            </Grid>
+                                            <Grid item={true} style={{ textAlign: "left" }}>
+                                                <div className={"fb-share-button"} data-href={props.url} data-layout={"button_count"} data-size={"small"} />
+                                            </Grid>
+                                        </Grid>
+                                    </div>
+                                </Box>
                                 <Box borderRadius={4} marginTop={2} className={styles.price}>
                                     <Typography variant={"h5"} color={"secondary"}>
                                         {props.originPrice && props.currentPrice !== props.originPrice && (
@@ -67,6 +59,9 @@ export default function Product(props) {
                                         )}
                                         {formatMoney(props.currentPrice)}đ
                                     </Typography>
+                                </Box>
+                                <Box marginTop={2}>
+                                    <AddToCart product={props} size={"large"} />
                                 </Box>
                             </Box>
                         </Grid>

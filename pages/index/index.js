@@ -17,41 +17,18 @@ import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
-import Dialog from "@material-ui/core/Dialog";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import TextField from "@material-ui/core/TextField";
-import DialogActions from "@material-ui/core/DialogActions";
 import _ from "lodash";
 import { useRouter } from "next/router";
 import { getBaseURL, rq } from "../../utils/axios";
+import AddToCart from "../../components/AddToCart";
 
 const { useState } = require("react");
 
 export default function Home(props) {
     const router = useRouter();
     const [menu, setMenu] = useState("all");
-    const [open, setOpen] = useState(false);
-    const [selectedOrder, setSelectedOrder] = useState({});
-    const [count, setCount] = useState(1);
     const [products, setProducts] = useState([]);
     const [types, setTypes] = useState([]);
-
-    const handleClickOpen = (order) => {
-        setCount(1);
-        setSelectedOrder(order);
-        setOpen(true);
-    };
-
-    const handleClose = () => {
-        setSelectedOrder({});
-        setOpen(false);
-    };
-
-    useEffect(() => {
-        if (count < 0) setCount(0);
-    }, [count]);
 
     useEffect(() => {
         setProducts(props.products);
@@ -148,17 +125,7 @@ export default function Home(props) {
                                             </CardContent>
                                         </CardActionArea>
                                         <CardActions>
-                                            <Button
-                                                fullWidth={true}
-                                                color={"secondary"}
-                                                variant={"contained"}
-                                                size={"small"}
-                                                onClick={(e) => {
-                                                    e.preventDefault();
-                                                    handleClickOpen(order);
-                                                }}>
-                                                Thêm vào giỏ
-                                            </Button>
+                                            <AddToCart product={order} fullWidth={true} />
                                         </CardActions>
                                     </Card>
                                 </Grid>
@@ -166,45 +133,6 @@ export default function Home(props) {
                         })}
                     </Grid>
                 </Box>
-                <Dialog open={open} onClose={handleClose}>
-                    <DialogTitle>{selectedOrder.name}</DialogTitle>
-                    <DialogContent>
-                        <div style={{ minWidth: 250 }}>
-                            <DialogContentText>
-                                <Typography>
-                                    Số tiền: {formatMoney(selectedOrder.currentPrice)} x {count || 0} = {formatMoney(selectedOrder.currentPrice * (count || 0))}
-                                    đ
-                                </Typography>
-                            </DialogContentText>
-                            <TextField
-                                onFocus={(e) => e.target.select()}
-                                autoFocus={true}
-                                margin={"dense"}
-                                type={"number"}
-                                fullWidth={true}
-                                label={"Số lượng"}
-                                value={count}
-                                onChange={(e) => setCount(parseInt(e.target.value))}
-                            />
-                            <div style={{ textAlign: "center" }}>
-                                <Button variant={"contained"} onClick={() => setCount(count - 1)}>
-                                    -
-                                </Button>
-                                <Button variant={"contained"} style={{ marginLeft: 4 }} onClick={() => setCount(count + 1)}>
-                                    +
-                                </Button>
-                            </div>
-                        </div>
-                    </DialogContent>
-                    <DialogActions>
-                        <Button onClick={handleClose} color="primary">
-                            Đóng
-                        </Button>
-                        <Button onClick={handleClose} color="primary">
-                            Thêm
-                        </Button>
-                    </DialogActions>
-                </Dialog>
             </main>
         </React.Fragment>
     );
