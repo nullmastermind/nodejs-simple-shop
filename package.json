@@ -1,7 +1,10 @@
 {
     "name": "nextjs-firebase-simple-shop",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "private": true,
+    "engines": {
+        "node": "10.x"
+    },
     "scripts": {
         "dev": "cross-env BASE_URL=http://local-vapp.cotest.abivin.vn next dev",
         "build": "next build",
