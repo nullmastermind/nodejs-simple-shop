@@ -9,6 +9,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import Dialog from "@material-ui/core/Dialog";
 import { formatMoney } from "../../pages/index";
 import { AddShoppingCart } from "@material-ui/icons";
+import _ from "lodash";
 
 export default function AddToCart(props) {
     const [open, setOpen] = useState(false);
@@ -21,6 +22,23 @@ export default function AddToCart(props) {
 
     const handleClose = () => {
         setOpen(false);
+    };
+
+    const handleAdd = () => {
+        handleClose();
+        let items = JSON.parse(localStorage.getItem("items") || "[]");
+        let index = _.findIndex(items, (v) => v.id === props.product.id);
+        if (index === -1) {
+            items.push({
+                id: props.product.id,
+                name: props.product.name,
+                price: props.product.currentPrice,
+                count,
+            });
+        } else {
+            items[index].count += count;
+        }
+        localStorage.setItem("items", JSON.stringify(items));
     };
 
     useEffect(() => {
@@ -75,7 +93,7 @@ export default function AddToCart(props) {
                     <Button onClick={handleClose} color="primary">
                         Đóng
                     </Button>
-                    <Button onClick={handleClose} color="primary">
+                    <Button onClick={handleAdd} color="primary">
                         Thêm
                     </Button>
                 </DialogActions>
