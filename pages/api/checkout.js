@@ -25,31 +25,32 @@ const q = new Queue(
 // };
 
 export default async (req, res) => {
-    let products = await getProducts();
+    // let products = await getProducts();
     let data = req.body;
-    console.log(data);
     q.push(
         async () => {
             if (!data.items || !data.items.length) return;
             let sheet = await getOrderSheet();
-            let product = data.items[0];
+            let pNames = [];
+            let pCounts = [];
+            let pPrices = [];
+            for (let i = 0; i < data.items.length; i++) {
+                let product = data.items[i];
+                pNames.push("- " + product.name);
+                pCounts.push("x" + product.count);
+                pPrices.push(formatMoney(product.count * product.price));
+            }
             await sheet.addRow([
                 data.mobile,
                 data.name || "-",
                 data.address,
                 data.note || "-",
-                product.name,
-                product.count,
-                product.count * product.price,
-                calcTotal(data.items),
+                pNames.join("\n"),
+                pCounts.join("\n"),
+                pPrices.join("\n"),
+                formatMoney(calcTotal(data.items)),
                 moment().tz("Asia/Ho_Chi_Minh").format("DD/MM/YYYY HH:mm"),
             ]);
-            let promises = [];
-            for (let i = 1; i < data.items.length; i++) {
-                product = data.items[i];
-                promises.push(sheet.addRow(["-", "-", "-", "-", product.name, product.count, product.count * product.price]));
-            }
-            await Promise.all(promises);
         },
         (err) => {
             if (err) return res.status(500).send(err.toString());
@@ -74,4 +75,9 @@ function calcTotal(items) {
         total += v.price * v.count;
     });
     return total;
+}
+
+function formatMoney(v) {
+    v = v + "";
+    return v.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
 }
