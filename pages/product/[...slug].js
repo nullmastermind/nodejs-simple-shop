@@ -13,17 +13,9 @@ import AddToCart from "../../components/AddToCart";
 
 export default function Product(props) {
     useEffect(() => {
-        let script = document.createElement("script");
-        script.async = true;
-        script.defer = true;
-        script.crossOrigin = "Anonymous";
-        script.src = "https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v7.0";
-        script.nonce = "Y2TDG5uV";
-        script.id = "fbscript";
-        document.body.appendChild(script);
-        return () => {
-            document.getElementById("fbscript").remove();
-        };
+        try {
+            FB.XFBML.parse();
+        } catch (e) {}
     }, []);
 
     return (
@@ -40,8 +32,6 @@ export default function Product(props) {
                 <meta property={"og:image:url"} content={props.image} />
             </Head>
             <main style={{ paddingLeft: 16, paddingRight: 16 }}>
-                <div id="fb-root" />
-                {/*<script async defer crossOrigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v7.0" nonce="Y2TDG5uV" />*/}
                 <Card elevation={3} className={styles.product}>
                     <Grid container={true} spacing={0}>
                         <Grid item={true} xs={4}>

@@ -22,6 +22,8 @@ export default class MyDocument extends Document {
                     <meta property="og:type" content="greenfood:restaurant" />
                 </Head>
                 <body>
+                    <div id="fb-root" />
+                    <script async defer crossOrigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v7.0" nonce="Y2TDG5uV" />
                     <Main />
                     <NextScript />
                 </body>
