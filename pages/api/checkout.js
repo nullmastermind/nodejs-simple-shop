@@ -25,38 +25,41 @@ const q = new Queue(
 // };
 
 export default async (req, res) => {
-    // let products = await getProducts();
-    let data = req.body;
-    q.push(
-        async () => {
-            if (!data.items || !data.items.length) return;
-            let sheet = await getOrderSheet();
-            let pNames = [];
-            let pCounts = [];
-            let pPrices = [];
-            for (let i = 0; i < data.items.length; i++) {
-                let product = data.items[i];
-                pNames.push("- " + product.name);
-                pCounts.push("x" + product.count);
-                pPrices.push(formatMoney(product.count * product.price));
+    try {
+        let data = req.body;
+        q.push(
+            async () => {
+                if (!data.items || !data.items.length) return;
+                let sheet = await getOrderSheet();
+                let pNames = [];
+                let pCounts = [];
+                let pPrices = [];
+                for (let i = 0; i < data.items.length; i++) {
+                    let product = data.items[i];
+                    pNames.push("- " + product.name);
+                    pCounts.push("x" + product.count);
+                    pPrices.push(formatMoney(product.count * product.price));
+                }
+                await sheet.addRow([
+                    data.mobile,
+                    data.name || "-",
+                    data.address,
+                    data.note || "-",
+                    pNames.join("\n"),
+                    pCounts.join("\n"),
+                    pPrices.join("\n"),
+                    formatMoney(calcTotal(data.items)),
+                    moment().tz("Asia/Ho_Chi_Minh").format("DD/MM/YYYY HH:mm"),
+                ]);
+            },
+            (err) => {
+                if (err) return res.status(500).send(err.toString());
+                res.json({ status: "SUCCESS" });
             }
-            await sheet.addRow([
-                data.mobile,
-                data.name || "-",
-                data.address,
-                data.note || "-",
-                pNames.join("\n"),
-                pCounts.join("\n"),
-                pPrices.join("\n"),
-                formatMoney(calcTotal(data.items)),
-                moment().tz("Asia/Ho_Chi_Minh").format("DD/MM/YYYY HH:mm"),
-            ]);
-        },
-        (err) => {
-            if (err) return res.status(500).send(err.toString());
-            res.json({ status: "SUCCESS" });
-        }
-    );
+        );
+    } catch (e) {
+        res.status(500).send(e.toString());
+    }
 };
 
 let sheet;
