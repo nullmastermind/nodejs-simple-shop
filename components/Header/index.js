@@ -66,7 +66,14 @@ export default function HeaderComponent(props) {
                                 animationOutDuration={1000}
                                 isVisible={!showFullLogo}
                                 animateOnMount={false}>
-                                <img src={props.web["logo2"]} className={styles.logo} alt={"logo"} />
+                                <img
+                                    src={props.web["logo2"]}
+                                    className={styles.logo}
+                                    alt={"logo"}
+                                    onClick={() => {
+                                        window.location.href = "/";
+                                    }}
+                                />
                             </Animated>
                             <Animated
                                 animationIn="zoomIn"
@@ -77,7 +84,13 @@ export default function HeaderComponent(props) {
                                 animateOnMount={false}>
                                 <Box className={styles.logoBg} boxShadow={3}>
                                     <CenterMiddleContentComponent>
-                                        <img src={props.web["logo"]} alt={"logo"} />
+                                        <img
+                                            src={props.web["logo"]}
+                                            alt={"logo"}
+                                            onClick={() => {
+                                                window.location.href = "/";
+                                            }}
+                                        />
                                     </CenterMiddleContentComponent>
                                 </Box>
                             </Animated>
@@ -121,7 +134,14 @@ export default function HeaderComponent(props) {
                                 animationOutDuration={1000}
                                 isVisible={!showFullLogo}
                                 animateOnMount={false}>
-                                <img src={props.web["logo2"]} className={styles.logoMobile} alt={"logo"} />
+                                <img
+                                    src={props.web["logo2"]}
+                                    className={styles.logoMobile}
+                                    alt={"logo"}
+                                    onClick={() => {
+                                        window.location.href = "/";
+                                    }}
+                                />
                             </Animated>
                             <Animated
                                 animationIn="zoomIn"
@@ -132,7 +152,13 @@ export default function HeaderComponent(props) {
                                 animateOnMount={false}>
                                 <Box className={styles.logoBg} boxShadow={3}>
                                     <CenterMiddleContentComponent>
-                                        <img src={props.web["logo"]} alt={"logo"} />
+                                        <img
+                                            src={props.web["logo"]}
+                                            alt={"logo"}
+                                            onClick={() => {
+                                                window.location.href = "/";
+                                            }}
+                                        />
                                     </CenterMiddleContentComponent>
                                 </Box>
                             </Animated>

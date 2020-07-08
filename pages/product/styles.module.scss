@@ -1,0 +1,32 @@
+.product {
+    max-width: 900px;
+    margin: 80px auto auto;
+}
+
+.product__title {
+}
+
+.product__image {
+    max-width: 100%;
+    display: block;
+}
+
+.product__image--container {
+    text-align: center;
+}
+
+.dropPrice {
+    display: inline-block;
+    margin-right: 8px;
+    opacity: 0.4;
+    text-decoration: line-through;
+    color: #000000;
+}
+
+.price {
+    padding: 16px;
+    background: #ededed;
+}
+
+.desc {
+}

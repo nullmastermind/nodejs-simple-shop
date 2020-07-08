@@ -215,7 +215,7 @@ Home.getInitialProps = async function ({ Component, ctx }) {
     return { products };
 };
 
-function formatMoney(v) {
+export const formatMoney = function (v) {
     v = v + "";
     return v.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
-}
+};
